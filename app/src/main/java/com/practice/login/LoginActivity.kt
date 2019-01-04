@@ -60,11 +60,11 @@ class LoginActivity : AppCompatActivity(), LoginActivityMVP.View {
     }
 
     override fun setFirstName(fname: String) {
-        firstName.setText(fname)
+        this.firstName.setText(fname)
     }
 
     override fun setLastName(lname: String) {
-        lastName.setText(lname)
+        this.lastName.setText(lname)
     }
 
 }

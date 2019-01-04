@@ -23,10 +23,12 @@ interface LoginActivityMVP {
 
         fun getCurrentUser()
 
+        fun saveUser()
+
     }
 
     interface Model {
-        fun createUser(fname: String?, lname: String?)
-        fun getUser(): User
+        fun createUser(fname: String, lname: String)
+        fun getUser(): User?
     }
 }

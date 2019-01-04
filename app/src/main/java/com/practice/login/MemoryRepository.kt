@@ -2,18 +2,19 @@ package com.practice.login
 
 class MemoryRepository : LoginRepository {
     private var user: User? = null
-    override fun getUser(): User {
-        if (user == null) {
+    override fun getUser(): User? {
+        return if (user == null) {
             val user = User("Divya", "Gupta")
-            user.setId(0)
-            return user
+            user.id = 0
+            this.user = user
+            this.user
         } else {
-            return user as User
+            user
         }
     }
 
     override fun saveUser(user: User) {
-        if (user == null) {
+        if (this.user == null) {
             this.user = getUser()
         }
         this.user = user

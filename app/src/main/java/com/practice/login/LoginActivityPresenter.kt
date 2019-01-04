@@ -17,24 +17,36 @@ class LoginActivityPresenter(private var model: LoginActivityMVP.Model) : LoginA
             if (view?.getFirstName().toString().trim() == "" || view?.getLastName().toString().trim() == "") {
                 view?.showInputError()
             } else {
-                model.createUser(view?.getFirstName(), view?.getLastName())
+                model.createUser(view?.getFirstName().toString(), view?.getLastName().toString())
                 view?.showUserSavedMessage()
             }
         }
     }
 
     override fun getCurrentUser() {
-        var user = model.getUser()
-        if (user == null) {
-            if (view != null) {
-                view?.showUserNotAvailable()
-            }
+        val user = model.getUser()
+
+        if (view != null) {
+            view?.setFirstName(user?.firstName.toString())
+            view?.setLastName(user?.lastName.toString())
         } else {
-            if (view != null) {
-                view?.setFirstName(view!!.getFirstName())
-                view?.setLastName(view!!.getLastName())
-            }
+            view?.showUserNotAvailable()
+
         }
 
+
+    }
+
+    override fun saveUser() {
+        if (view != null) {
+            if (view?.getFirstName()?.trim().equals("") || view?.getLastName()?.trim().equals("")) {
+                view?.showInputError()
+            } else {
+
+                model.createUser(view?.getFirstName().toString(), view?.getLastName().toString())
+                view?.showUserSavedMessage()
+
+            }
+        }
     }
 }

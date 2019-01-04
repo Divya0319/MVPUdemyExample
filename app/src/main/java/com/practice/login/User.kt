@@ -1,12 +1,13 @@
 package com.practice.login
 
-class User(private var firstName: String?, private var lastName: String?) {
-    private var id: Int = -1
-    fun getId(): Int {
-        return id
-    }
+class User(firstName: String, lastName: String) {
+    var id: Int = -1
+    var firstName: String? = null
+    var lastName: String? = null
 
-    fun setId(id: Int) {
-        this.id = id
+    init {
+        this.firstName = firstName
+        this.lastName = lastName
+
     }
 }
